@@ -32,7 +32,11 @@ class _PhotoAppState extends State<PhotoApp> {
           ) ,
         ),
         body: Center(
-          child: buildContainer(),
+          child: Wrap(
+            spacing: 5,
+            runSpacing: 5,
+            children: _getImages(),
+          ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: _pinkImage,
@@ -42,26 +46,21 @@ class _PhotoAppState extends State<PhotoApp> {
       ),
     );;
   }
+  List<File> _images=[];
   Future getImage(bool isTakePhote) async {
     Navigator.pop(context);
     var image = await ImagePicker.pickImage(source: isTakePhote?ImageSource.camera:ImageSource.gallery);
     setState(() {
-      _image = image;
+      if (image!=null){
+        _images.add(image);
+      }
     });
   }
-  Widget buildContainer() {
-    return Column(
-      children: <Widget>[
-        _image == null
-            ? Text('No image selected.')
-            : Image.file(_image),
-      ],
-    );
-  }
+
 
   void _pinkImage() {
-    showModalBottomSheet(context: context, builder: (context)=>Container(
-      height: 160,
+      showModalBottomSheet(context: context, builder: (context)=>Container(
+      height: 120,
       child: Column(
         children: <Widget>[
           _Item("拍照",true),
@@ -79,5 +78,36 @@ class _PhotoAppState extends State<PhotoApp> {
             onTap: () =>getImage(isTakePhote),
           ),
     );
+  }
+
+  _getImages() {
+    return _images.map((file){
+      return Stack(
+        children: <Widget>[
+          ClipRRect(
+            borderRadius: BorderRadius.circular(5),
+            child: Image.file(file,width: 120,height: 90,fit: BoxFit.fill,),
+          ),
+          Positioned(
+            right: 5,
+            top: 5,
+            child: GestureDetector(
+              onTap: (){
+              setState(() {
+                _images.remove(file);
+              });
+              },
+              child: ClipOval(
+                child: Container(
+                  padding: EdgeInsets.all(3),
+                  decoration: BoxDecoration(color: Colors.black),
+                  child: Icon(Icons.close,size: 18,color: Colors.white,),
+                ),
+              ),
+            ),
+          )
+        ],
+      );
+    }).toList();
   }
 }
