@@ -11,7 +11,7 @@ class _LogoAppState extends State<LogoApp> with SingleTickerProviderStateMixin {
   double animationValue;
   @override
   void initState() {
-    // TODO: implement initState12
+    // TODO: implement initState122
     super.initState();
     animationController =AnimationController(vsync: this,duration: Duration(seconds: 2));
     animation=Tween<double>(begin: 0,end: 300).animate(animationController)
