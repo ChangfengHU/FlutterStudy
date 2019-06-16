@@ -28,7 +28,7 @@ class _ImageWidgetState extends State<ImageWidget> {
         Row(
           children: <Widget>[
             Image.network(url),
-            Text("网络图片",style: TextStyle(fontSize: 20))
+            Text("网络图片1",style: TextStyle(fontSize: 20))
           ],
         ),
         Row(
