@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+//import 'package:cached_network_image/cached_network_image.dart';
 
 class ImageWidget extends StatefulWidget {
   @override
@@ -38,16 +38,16 @@ class _ImageWidgetState extends State<ImageWidget> {
           ],
         ),
 //        new Image(image: new CachedNetworkImageProvider(url)),
-        Row(
-          children: <Widget>[
-            new CachedNetworkImage(
-              imageUrl: url,
-              placeholder: (context, url) => new CircularProgressIndicator(),
-              errorWidget: (context, url, error) => new Icon(Icons.error),
-            ),
-            Text("缓存图片",style: TextStyle(fontSize: 20))
-          ],
-        ),
+//        Row(
+//          children: <Widget>[
+//            new CachedNetworkImage(
+//              imageUrl: url,
+//              placeholder: (context, url) => new CircularProgressIndicator(),
+//              errorWidget: (context, url, error) => new Icon(Icons.error),
+//            ),
+//            Text("缓存图片",style: TextStyle(fontSize: 20))
+//          ],
+//        ),
       ],
     );
   }

@@ -31,21 +31,7 @@ class _PhotoAppState extends State<PhotoApp> {
             child: Icon(Icons.arrow_back),
           ),
         ),
-        body:Container(
-          child: Column(
-            children: <Widget>[
-              Wrap(
-                spacing: 5,
-                runSpacing: 5,
-                children: _getImages(),
-              ),
-
-              Container(
-                child: FadeInImage.memoryNetwork(placeholder: kTransparentImage, image: "http://www.devio.org/img/avatar.png"),
-              ),
-            ],
-          ),
-        ),
+        body:buildContainer(),
         floatingActionButton: FloatingActionButton(
           onPressed: _pinkImage,
           tooltip: '选择照片',
@@ -53,7 +39,24 @@ class _PhotoAppState extends State<PhotoApp> {
         ),
       ),
     );
-    ;
+  }
+
+  Container buildContainer() {
+    return Container(
+        child: Column(
+          children: <Widget>[
+            Wrap(
+              spacing: 5,
+              runSpacing: 5,
+              children: _getImages(),
+            ),
+
+            Container(
+              child: FadeInImage.memoryNetwork(placeholder: kTransparentImage, image: "http://www.devio.org/img/avatar.png"),
+            ),
+          ],
+        ),
+      );
   }
 
   List<File> _images = [];
